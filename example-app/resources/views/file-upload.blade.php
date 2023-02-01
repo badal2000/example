@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Laravel 9 File Upload Tutorial With Example- ScratchCode.io</title>
+      <title> File Upload</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
    </head>
    <body>
       <div class="container">
          <div class="panel panel-primary">
             <div class="panel-heading">
-               <h2>Laravel 9 File Upload Tutorial With Example</h2>
+               <h2>File Upload</h2>
             </div>
             <div class="panel-body">
                @if ($message = Session::get('success'))
@@ -40,6 +40,9 @@
                      </div>
                   </div>
                </form>
+               <div>
+                  <a href="{{route('show.file')}}">Show</a>
+               </div>
             </div>
          </div>
       </div>

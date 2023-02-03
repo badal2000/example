@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    
-        <div>
+        <h1>file show</h1>
+        
             @foreach($docs as $doc)
-                <h1>file show</h1>
-                <a href="{{$doc->upload_file}}" download="{{$doc->file_name}}">File</a>
+                <div>
+                    <a href="{{$doc->upload_file}}" download="{{$doc->file_name}}">Filename : {{$doc->file_name}}</a>
 
-            @endforeach
-
-        </div>    
+                </div>
+            @endforeach   
 </body>
 </html>

@@ -12,6 +12,6 @@ class Doc extends Model
     protected $fillable = ['file_name'];
     protected $appends = ['upload_file'];
     public function getUploadFileAttribute(){
-        return asset('storage/app/public/uploads/')."/".$this->file_name;
+        return asset('uploads/')."/".$this->file_name;
     }
 }

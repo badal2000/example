@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Doc;
- 
+use App\Traits\UploadFileTrait;
+
+
 class FileUploadController extends Controller
 {
+    use UploadFileTrait;
+    private $file_path;
+    public function __construct()
+    {
+        $this->file_path = public_path('uploads/');
+    }
     public function getFileUploadForm()
     {
         return view('file-upload');
@@ -18,12 +26,12 @@ class FileUploadController extends Controller
         $request->validate([
             'file' => 'required|mimes:pdf,xlxs,xlx,docx,doc,csv,txt,png,gif,jpg,jpeg|max:2048',
         ]);
+        $fileName = $this->uploadFile($request->file('file'), $this->file_path);
+
+        // $filePath = 'uploads/' . $fileName;
  
-        $fileName = $request->file->getClientOriginalName();
-        $filePath = 'uploads/' . $fileName;
- 
-        $path = Storage::disk('public')->put($filePath, file_get_contents($request->file));
-        $path = Storage::disk('public')->url($path);
+        // $path = Storage::disk('public')->put($filePath, file_get_contents($request->file));
+        // $path = Storage::disk('public')->url($path);
 
         // Perform the database operation here
         Doc::create([
@@ -37,7 +45,6 @@ class FileUploadController extends Controller
     public function show()
     {
         $docs = Doc::get();
-        
         return view('showfile',compact('docs'));
     }
 
